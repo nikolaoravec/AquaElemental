@@ -3,9 +3,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private float minJumpForce;
+    [SerializeField] private float maxJumpForce;
+    [SerializeField] private float maxJumpDuration;
     private Rigidbody2D body;
     private Animator anim;
     private bool isGrounded;
+    private bool isJumping;
+    private float jumpStartTime;
 
     private void Awake()
     {
@@ -15,12 +20,30 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (isGrounded)
         {
-            body.velocity = new Vector2(body.velocity.x, speed);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                isJumping = true;
+                jumpStartTime = Time.time;
+            }
+            else if (Input.GetKeyUp(KeyCode.Space) && isJumping)
+            {
+                float jumpDuration = Time.time - jumpStartTime;
+                float jumpForce = CalculateJumpForce(jumpDuration);
+                body.velocity = new Vector2(body.velocity.x, jumpForce);
+                isJumping = false;
+            }
         }
 
         anim.SetBool("jump", !isGrounded);
+    }
+
+    private float CalculateJumpForce(float jumpDuration)
+    {
+        float normalizedDuration = Mathf.Clamp01(jumpDuration / maxJumpDuration);
+        float jumpForce = Mathf.Lerp(minJumpForce, maxJumpForce, normalizedDuration);
+        return jumpForce;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
