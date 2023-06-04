@@ -61,4 +61,13 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D coll)
+    {
+        Debug.Log("trigger player");
+        if (coll.gameObject.CompareTag("MineObstacle")) {
+            Debug.Log(coll.gameObject.tag);
+            coll.gameObject.GetComponent<Animator>().Play("Explosion");
+        }
+    }
 }

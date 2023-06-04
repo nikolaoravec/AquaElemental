@@ -7,7 +7,7 @@ public class ObjectSpawner : MonoBehaviour
     public GameObject spawnableObject;
 
     private float timer;
-    private int spawnTime = 0;
+    private float spawnTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class ObjectSpawner : MonoBehaviour
             
             Instantiate(spawnableObject, pos, Quaternion.identity);
             timer = 0;
-            spawnTime = rand.Next(1,3);
+            spawnTime = (float)rand.Next(1,3) + (float)rand.NextDouble();
         }
 
     }
