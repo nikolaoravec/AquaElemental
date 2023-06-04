@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping;
     private float jumpStartTime;
     private bool availableForSecondJump = true;
-
+    
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
@@ -39,9 +39,10 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space) && availableForSecondJump)
         {
             body.velocity = Vector2.up * 10;
-            // availableForSecondJump = false;
+            availableForSecondJump = false;
         }
 
+        anim.SetBool("brace", isJumping);
         anim.SetBool("jump", !isGrounded);
     }
 
@@ -57,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
-            // availableForSecondJump = true;
+             availableForSecondJump = true;
         }
     }
 
@@ -77,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
             trigger.gameObject.GetComponent<Animator>().Play("Explosion");
             gameObject.GetComponent<Animator>().Play("Dead");
             Destroy(gameObject, 1);
+            GlobalState.GameOver();
+            return;
         }
         if (trigger.gameObject.CompareTag("Coin")) {
             GlobalState.coinCount += 1;
