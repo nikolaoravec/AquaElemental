@@ -8,6 +8,7 @@ public class GlobalState : MonoBehaviour
 {
     public static GameObject gameOverText;
     public static GameObject restartPromptText;
+    public static GameObject quitPromptText;
     public static bool gameOver = false;
 
     public GameObject player;
@@ -18,14 +19,17 @@ public class GlobalState : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space) && gameOver)
         {
-            NewGame();
+            NewGame(); return;
+        }
+        if (Input.GetKeyUp(KeyCode.Q) && gameOver)
+        {
+            Debug.Log("Q KEY");
+            Application.Quit(); return;
         }
     }
    
     public void Start()
     {
-        gameOverText.SetActive(false);
-        restartPromptText.SetActive(false);
     }
 
     public static void SetGameOverText(GameObject obj)
@@ -39,6 +43,7 @@ public class GlobalState : MonoBehaviour
         gameOver = true;
         gameOverText.SetActive(true);
         restartPromptText.SetActive(true);
+        quitPromptText.SetActive(true);
     }
 
     public void NewGame()
@@ -46,13 +51,8 @@ public class GlobalState : MonoBehaviour
         gameOver = false;
         gameOverText.SetActive(false);
         restartPromptText.SetActive(false);
+        quitPromptText.SetActive(false);
         coinCount = 0;
         Instantiate(player);
-    }
-
-    public void OnKeyDown(KeyDownEvent ev)
-    {
-        Debug.Log("on key down " + ev.keyCode);
-        if (ev.keyCode == KeyCode.Space) NewGame();
     }
 }
