@@ -4005,7 +4005,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2096403759}
-  - component: {fileID: 2096403758}
+  - component: {fileID: 2096403760}
   m_Layer: 0
   m_Name: LowObstacleSpawner
   m_TagString: Untagged
@@ -4013,19 +4013,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2096403758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096403757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ad6270f0b7834686aecef3639ed34fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnableObject: {fileID: 3282238975541883475, guid: 73fce34373af34540b20ec60ab1bc035, type: 3}
 --- !u!4 &2096403759
 Transform:
   m_ObjectHideFlags: 0
@@ -4041,6 +4028,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2096403760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096403757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6b02e002148dc4db679726b9f02ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefab: {fileID: 3282238975541883475, guid: 73fce34373af34540b20ec60ab1bc035, type: 3}
 --- !u!1 &2121026037
 GameObject:
   m_ObjectHideFlags: 0
