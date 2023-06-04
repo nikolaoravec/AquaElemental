@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool isJumping;
     private float jumpStartTime;
+    private bool availableForSecondJump = true;
 
     private void Awake()
     {
@@ -35,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
                 isJumping = false;
             }
         }
+        else if (Input.GetKeyDown(KeyCode.Space) && availableForSecondJump)
+        {
+            body.velocity = Vector2.up * 10;
+            // availableForSecondJump = false;
+        }
 
         anim.SetBool("jump", !isGrounded);
     }
@@ -51,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            // availableForSecondJump = true;
         }
     }
 
