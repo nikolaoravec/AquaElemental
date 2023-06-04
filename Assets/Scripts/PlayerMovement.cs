@@ -69,5 +69,10 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log(coll.gameObject.tag);
             coll.gameObject.GetComponent<Animator>().Play("Explosion");
         }
+        if (coll.gameObject.CompareTag("Coin")) {
+            GlobalState.coinCount += 1;
+            Destroy(coll.gameObject);
+            Debug.Log(GlobalState.coinCount);
+        }
     }
 }

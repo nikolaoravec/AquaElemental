@@ -18,10 +18,5 @@ public class Coin : MonoBehaviour
     }
     
     public void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.tag == "Player") {
-            GlobalState.coinCount += 1;
-            Destroy(gameObject);
-        }
-        Debug.Log(GlobalState.coinCount);
     }
 }
