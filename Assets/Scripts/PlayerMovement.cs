@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float normalizedDuration = Mathf.Clamp01(jumpDuration / maxJumpDuration);
         float jumpForce = Mathf.Lerp(minJumpForce, maxJumpForce, normalizedDuration);
-        return jumpForce;
+        return jumpForce * 1.5f;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
