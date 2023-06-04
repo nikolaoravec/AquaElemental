@@ -1,4 +1,4 @@
-using UnityEngine;
+    using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -62,16 +62,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D coll)
+    private void OnTriggerEnter2D(Collider2D trigger)
     {
         Debug.Log("trigger player");
-        if (coll.gameObject.CompareTag("MineObstacle")) {
-            Debug.Log(coll.gameObject.tag);
-            coll.gameObject.GetComponent<Animator>().Play("Explosion");
+        if (trigger.gameObject.CompareTag("MineObstacle")) {
+            Debug.Log(trigger.gameObject.tag);
+            trigger.gameObject.GetComponent<Animator>().Play("Explosion");
+            gameObject.GetComponent<Animator>().Play("Dead");
+            Destroy(gameObject, 1);
         }
-        if (coll.gameObject.CompareTag("Coin")) {
+        if (trigger.gameObject.CompareTag("Coin")) {
             GlobalState.coinCount += 1;
-            Destroy(coll.gameObject);
+            Destroy(trigger.gameObject);
             Debug.Log(GlobalState.coinCount);
         }
     }
